@@ -8,6 +8,7 @@
     $('.operator').click(doMath);
     $('.clear').click(clear);
     $('.decimal').click(decimal);
+    $('.toggle').click(toggle);
     $('#push').click(printToTape);
   }
 
@@ -29,6 +30,11 @@
       $('#display').text('hamburgers');
       $('#box').text(' ');
     }
+  }
+
+  function toggle(){
+    var display = $('#display').text();
+    $('#display').text(display * -1);
   }
 
   function doMath(){
