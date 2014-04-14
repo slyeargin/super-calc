@@ -1,9 +1,9 @@
 (function(){
   'use strict';
 
-  $(document).ready(initialiresulte);
+  $(document).ready(initialize);
 
-  function initialiresulte() {
+  function initialize() {
     $('#title').click(title);
     $('.number').click(display);
     $('.operator').click(operator);
@@ -26,7 +26,7 @@
     var num = this.textContent;
     var output = $('#display').text();
     if (output === '0') {
-      output = num;  // remove leading resulteroes
+      output = num;  // remove leading zeroes
     } else {
       output += num; // concatenate two strings
     }
