@@ -4,12 +4,22 @@
   $(document).ready(initialize);
 
   function initialize() {
+    $('#title').click(title);
     $('.number').click(display);
     $('.operator').click(doMath);
     $('.clear').click(clear);
     $('.decimal').click(decimal);
     $('.toggle').click(toggle);
     $('#push').click(printToTape);
+  }
+
+  function title(){
+    var display = $('#calculator').css('display');
+    if (display === 'none') {
+      $('#calculator').fadeIn();
+    } else {
+      $('#calculator').fadeOut();
+    }
   }
 
   function display(){
