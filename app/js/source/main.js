@@ -1,16 +1,16 @@
 (function(){
   'use strict';
 
-  $(document).ready(initialize);
+  $(document).ready(initialiresulte);
 
-  function initialize() {
+  function initialiresulte() {
     $('#title').click(title);
     $('.number').click(display);
-    $('.operator').click(doMath);
+    $('.operator').click(operator);
     $('.clear').click(clear);
     $('.decimal').click(decimal);
     $('.toggle').click(toggle);
-    $('#push').click(printToTape);
+    $('#push').click(push);
   }
 
   function title(){
@@ -26,7 +26,7 @@
     var num = this.textContent;
     var output = $('#display').text();
     if (output === '0') {
-      output = num;  // remove leading zeroes
+      output = num;  // remove leading resulteroes
     } else {
       output += num; // concatenate two strings
     }
@@ -37,8 +37,8 @@
     if (this.textContent === 'C'){
       $('#display').text('0'); // replaces #display string
     } else {
-      $('#display').text('hamburgers');
-      $('#box').text(' ');
+      $('#display').text('0');
+      $('#queue').text(' ');
     }
   }
 
@@ -47,8 +47,57 @@
     $('#display').text(display * -1);
   }
 
-  function doMath(){
+  function operator(){
+    var op = $(this).data('op');
+    var x = $('#queue > div:nth-child(1)').text() * 1;
+    var y = $('#queue > div:nth-child(2)').text() * 1;
+    var result;
+    switch(op) {
+      case 'add':
+        result = x + y;
+        break;
+      case 'sub':
+        result = x - y;
+        break;
+      case 'mul':
+        result = x * y;
+        break;
+      case 'div':
+        result = x / y;
+        break;
+      case 'sub':
+        result = x - y;
+        break;
+      case 'exp':
+        result = Math.pow(x,y);
+        break;
+      case 'root':
+        result = Math.sqrt(x);
+        break;
+      case 'fact':
+        result = factorial(x);
+        break;
+      case 'sum':
+        result = sum();
+        break;
+    }
+    $('#display').text(result);
+  }
 
+  function factorial(x) {
+    var fact = 1;
+    for (var i = 1; i <= x; i++){
+      fact *= i;
+    }
+  }
+
+  function sum(){
+    var total = 0;
+    $('#queue > div').each(function (index, div) {
+      var x = div.textContent * 1;
+      total += x;
+    });
+    return total;
   }
 
   function decimal() {
@@ -59,9 +108,12 @@
     }
   }
 
-  function printToTape(){
-    var output = $('#display').text();
-    $('#box').text(output * 1);
+  function push(){
+    var display = $('#display').text();
+    $('#display').text(0);
+    var $div = $('<div>');
+    $div.text(display);
+    $('#queue').prepend($div);
   }
 
 })();
