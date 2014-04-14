@@ -37,8 +37,7 @@
     if (this.textContent === 'C'){
       $('#display').text('0'); // replaces #display string
     } else {
-      $('#display').text('0');
-      $('#queue').text(' ');
+      $('#queue').empty();
     }
   }
 
